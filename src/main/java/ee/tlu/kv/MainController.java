@@ -67,7 +67,6 @@ public class MainController {
 
             }
         }
-
         for (int i = 0; i < kvs.size(); i++) {
             stats.addValue(kvs.get(i).getPrice());
         }
