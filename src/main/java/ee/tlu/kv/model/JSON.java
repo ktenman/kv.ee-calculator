@@ -1,4 +1,4 @@
-package ee.tlu.kv;
+package ee.tlu.kv.model;
 
 /**
  * Created by Konstantin on 18.04.2016.

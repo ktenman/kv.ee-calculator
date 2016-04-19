@@ -1,6 +1,8 @@
-package ee.tlu.kv;
+package ee.tlu.kv.data.impl;
 
 import com.google.gson.Gson;
+import ee.tlu.kv.data.Repository;
+import ee.tlu.kv.model.JSON;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

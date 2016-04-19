@@ -1,6 +1,7 @@
-package ee.tlu.kv;
+package ee.tlu.kv.controller;
 
 import com.google.gson.Gson;
+import ee.tlu.kv.data.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
