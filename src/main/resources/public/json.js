@@ -13,23 +13,7 @@ $(document).ready(function () {
             $('#otsing').val('');
         }
     });
-    
-    $("input").prop('required',true);
 
-    jQuery.validator.setDefaults({
-        debug: false,
-        success: "valid"
-    });
-
-    $("body").validate({
-        rules: {
-            otsing: "required"
-        },
-        messages: {
-            restaurantId: "Choose restaurant!"
-        }
-    });
-    
     function getItems(searchWord) {
         $('#loading').show();
         var data = {
