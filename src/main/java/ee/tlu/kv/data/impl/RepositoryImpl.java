@@ -23,11 +23,10 @@ import static java.util.stream.Collectors.toList;
  */
 @Component
 public class RepositoryImpl implements Repository {
-    private List<Double> kvs = new ArrayList<>();
-    private DescriptiveStatistics stats = new DescriptiveStatistics();
 
     @Override
     public String findAllKVsByKeyWord(String searchWord) throws IOException {
+        List<Double> kvs = new ArrayList<>();
         String kvLink = "http://kinnisvaraportaal-kv-ee.postimees.ee/?act=search.simple&company_id=&page=1&orderby=ob&page_size=100&deal_type=2&dt_select=2&county=0&keyword="
                 + searchWord;
         Document document = Jsoup.connect(kvLink).timeout(0).get();
@@ -45,10 +44,11 @@ public class RepositoryImpl implements Repository {
                     .map(price -> Double.parseDouble(price.text().split(" €")[0].replaceAll("[^\\d.]+", "")))
                     .collect(toList()));
         }
-        return new Gson().toJson(calculateStats(searchWord));
+        return new Gson().toJson(calculateStats(kvs, searchWord));
     }
 
-    private JSON calculateStats(String searchWord) throws UnsupportedEncodingException {
+    private JSON calculateStats(List<Double> kvs, String searchWord) throws UnsupportedEncodingException {
+        DescriptiveStatistics stats = new DescriptiveStatistics();
         for (Double kv : kvs) {
             stats.addValue(kv);
         }
