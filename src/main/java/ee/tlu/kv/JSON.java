@@ -4,10 +4,10 @@ package ee.tlu.kv;
  * Created by Konstantin on 18.04.2016.
  */
 public class JSON {
-    private String city;
-    private double mean;
-    private double std;
-    private double median;
+    private final String city;
+    private final double mean;
+    private final double std;
+    private final double median;
 
     public JSON(String city, double mean, double std, double median) {
         this.city = city;
