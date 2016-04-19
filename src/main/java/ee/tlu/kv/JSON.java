@@ -15,6 +15,4 @@ public class JSON {
         this.std = std;
         this.median = median;
     }
-
-
 }
