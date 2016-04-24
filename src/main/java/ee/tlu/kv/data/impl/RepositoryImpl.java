@@ -8,6 +8,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -24,12 +25,13 @@ import static java.util.stream.Collectors.toList;
 @Component
 public class RepositoryImpl implements Repository {
 
+    @Value("${ee.tlu.kv.link}")
+    private String KVLINK;
+
     @Override
     public String findAllKVsByKeyWord(String searchWord) throws IOException {
         List<Double> kvs = new ArrayList<>();
-        String kvLink = "http://kinnisvaraportaal-kv-ee.postimees.ee/?act=search.simple&company_id=&page=1&orderby=ob&page_size=100&deal_type=2&dt_select=2&county=0&keyword="
-                + searchWord;
-        Document document = Jsoup.connect(kvLink).timeout(0).get();
+        Document document = Jsoup.connect(KVLINK + searchWord).timeout(0).get();
         int kvPageCounter = findKvPageCounter("[class=list jump-pagination-list] li.item a.count", document);
         List<String> searchLinks = new ArrayList<>();
         for (int i = 0; i <= kvPageCounter; i++) {
